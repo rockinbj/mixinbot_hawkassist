@@ -4,7 +4,7 @@ const {getAhr999, getAhr999x} = require("./ahr999");
 
 let buyAmount = 0.001;
 let interval = 5;  // minute
-let usdtCny = 6.55;
+let usdtCny = 6.5;
 
 
 async function main() {
