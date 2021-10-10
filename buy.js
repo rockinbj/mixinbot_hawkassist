@@ -24,7 +24,7 @@ async function main() {
         interval = 60;
     }
 
-    cmd = `*/${interval} * * * * cd /home/rockhawk/Code/mixin/hawkassist; node mixswap.js ${buyAmount} > mixswap.log &`
+    cmd = `*/${interval} * * * * cd /home/rockhawk/Code/mixin/hawkassist; node mixswap.js ${buyAmount} >> mixswap.log &`
     // console.log(cmd);
     shell.exec(`echo "${cmd}" > cron.mixswap`);
     shell.exec("crontab cron.mixswap");
