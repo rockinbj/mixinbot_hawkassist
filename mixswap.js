@@ -19,12 +19,13 @@ const assetIdUsdt = "4d8c508b-91c5-375b-92b0-ee702ed2dac5";
 const buyAmount = process.argv[2];  // get amount argument from cmd line
 const buyMemo = Buffer.from(`0|${assetIdBtc}`).toString("base64");
 const buyTraceId = client.newUUID();
-const waitTime = 3000; // ms
+const waitTime = 6000; // ms
 
 
 // await sleep(ms)
 function sleep(ms) {
     return new Promise(resolve=>{
+        console.log("sleep",ms);
         setTimeout(resolve, ms);
     })
 }
@@ -33,6 +34,7 @@ function sleep(ms) {
 async function checkBalance(assetId, amount) {
     let balance = await client.readAsset(assetId);
     balance = balance.balance;
+    console.log(Date());
     console.log(`${assetId} balance ${balance}`);
     if (balance >= amount) {
         return true;
@@ -52,15 +54,17 @@ async function getMixswapOrderStatus(traceId) {
             r = await axios.get(`${mixswapApiPoint}/order/${traceId}`);
             r = r.data;
         } catch (error) {
+            console.log(Date());
             console.log(error);
         }
 
         if (r.success === true) {
             orderStatus = r.data.orderStatus;
-            // console.log(orderStatus);
+            console.log(orderStatus);
         }
         
         if (orderStatus == "done") {
+            console.log(Date());
             console.log(r);
             return r.data.receiveAmount;
         }
@@ -82,6 +86,7 @@ async function main() {
     if (await checkBalance(assetIdUsdt, buyAmount)) {
         // transfer usdt to mixswap for buying btc
         client.transfer(buyTransInfo).then(async r=>{
+            console.log(Date());
             console.log(r);
             receiveAmount = await getMixswapOrderStatus(r.trace_id);
             if (receiveAmount) {
@@ -93,8 +98,12 @@ async function main() {
                     trace_id: client.newUUID(),
                     memo: transBackMemo,
                 }
+                console.log(Date());
                 console.log(backTransInfo);
-                client.transfer(backTransInfo).then(console.log)
+                client.transfer(backTransInfo).then(r=>{
+                    console.log(Date());
+                    console.log(r);
+                })
             }
         });
     }

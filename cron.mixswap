@@ -1,1 +1,1 @@
-*/60 * * * * cd /home/rockhawk/Code/mixin/hawkassist; node mixswap.js 0.9985 > mixswap.log &
+*/60 * * * * cd /home/rockhawk/Code/mixin/hawkassist; node mixswap.js 0.9985 >> mixswap.log &
