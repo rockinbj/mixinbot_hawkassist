@@ -90,7 +90,7 @@ async function main() {
             console.log(r);
             receiveAmount = await getMixswapOrderStatus(r.trace_id);
             if (receiveAmount) {
-                const transBackMemo = `${buyAmount}USDT->${receiveAmount}BTC with Mixswap`
+                const transBackMemo = `${buyAmount}USDT with Mixswap`
                 backTransInfo = {
                     asset_id: assetIdBtc,
                     opponent_id: myUserId,
