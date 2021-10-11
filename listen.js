@@ -4,13 +4,9 @@ const {getAhr999, getAhr999x} = require("./ahr999");
 
 const client = new BlazeClient(mixinAppConfig, {parse: true, syncAck: true});
 
-const helpMessage = "a9: get ahr999\n\
-a9x: get ahr999x"
-
-
 
 client.loopBlaze({
-    onMessage(msg) {
+    async onMessage(msg) {
         //unrelated messages
         if (msg.type != "message"
             || !msg.category
@@ -19,19 +15,10 @@ client.loopBlaze({
         }
 
         console.log(msg);
+        a9 = await getAhr999();
+        a9x = await getAhr999x();
+        replyMsg = `Ahr999: ${a9}\nAhr999x: ${a9x}`;
 
-        if (msg.data == "a9") {
-            getAhr999().then(r=>{
-                client.sendTextMsg(msg.user_id, r);
-            })
-        }
-        else if (msg.data == "a9x") {
-            getAhr999x().then(r=>{
-                client.sendTextMsg(msg.user_id, r);
-            })
-        }
-        else {
-            client.sendTextMsg(msg.user_id, helpMessage);
-        }
+        client.sendTextMsg(msg.user_id, replyMsg);
     },
   });
