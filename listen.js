@@ -12,9 +12,9 @@ a9x: get ahr999x"
 client.loopBlaze({
     onMessage(msg) {
         //unrelated messages
-        if (message.type != "message"
-            || !message.category
-            || message.source != "CREATE_MESSAGE") {
+        if (msg.type != "message"
+            || !msg.category
+            || msg.source != "CREATE_MESSAGE") {
             return;
         }
 
