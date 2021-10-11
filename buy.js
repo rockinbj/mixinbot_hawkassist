@@ -9,6 +9,7 @@ let usdtCny = 6.5;
 
 async function main() {
     let ahr999 = await getAhr999();
+    console.log(Date());
     console.log(`ahr999: ${ahr999}`);
     if (ahr999 <= 0.46) {
         buyAmount = (13.88/usdtCny).toFixed(4);

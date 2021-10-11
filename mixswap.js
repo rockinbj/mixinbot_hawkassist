@@ -4,7 +4,16 @@
 
 const axios = require("axios");
 const {BlazeClient} = require("mixin-node-sdk");
-const mixinAppConfig = require("./mixinConfig");
+const conf = require('@tsmx/secure-config')();
+let mixinAppConfig = {
+    "pin": conf.mixinApp.pin,
+    "client_id": conf.mixinApp.client_id,
+    "session_id": conf.mixinApp.session_id,
+    "session_secret": conf.mixinApp.session_secret,
+    "pin_token": conf.mixinApp.pin_token,
+    "private_key": conf.mixinApp.private_key
+}
+// const mixinAppConfig = require("./mixinConfig");
 
 const client = new BlazeClient(mixinAppConfig, {parse: true, syncAck: true})
 
@@ -20,6 +29,7 @@ const buyAmount = process.argv[2];  // get amount argument from cmd line
 const buyMemo = Buffer.from(`0|${assetIdBtc}`).toString("base64");
 const buyTraceId = client.newUUID();
 const waitTime = 6000; // ms
+const waitRound = 50;
 
 
 // await sleep(ms)
@@ -47,7 +57,7 @@ async function checkBalance(assetId, amount) {
 async function getMixswapOrderStatus(traceId) {
     orderStatus = "";
     let r = "";
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < waitRound; i++) {
         await sleep(waitTime);
         // console.log(`${mixswapApiPoint}/order/${traceId}`);
         try {
