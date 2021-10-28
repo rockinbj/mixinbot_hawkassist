@@ -1,0 +1,19 @@
+{
+  "name": "hawkassist",
+  "version": "1.0.0",
+  "main": "appHawkAssist.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon appHawkAssist.js"
+  },
+  "dependencies": {
+    "@tsmx/secure-config": "^2.0.0",
+    "@tsmx/secure-config-tool": "^2.1.0",
+    "cheerio": "^1.0.0-rc.10",
+    "mixin-node-sdk": "^3.0.12",
+    "nodemon": "^2.0.14",
+    "shelljs": "^0.8.4",
+    "sqlite3": "^5.0.2",
+    "superagent": "^6.1.0"
+  }
+}
