@@ -10,6 +10,7 @@
     "@tsmx/secure-config": "^2.0.0",
     "@tsmx/secure-config-tool": "^2.1.0",
     "cheerio": "^1.0.0-rc.10",
+    "log4js": "^6.3.0",
     "mixin-node-sdk": "^3.0.12",
     "nodemon": "^2.0.14",
     "shelljs": "^0.8.4",

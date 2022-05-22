@@ -1,8 +1,8 @@
 const request = require("superagent");
 const cheerio = require("cheerio");
 
-const urlAhr999 = "https://btctom.com/dash/ahr999";
-const urlAhr999x = "https://btctom.com/dash/ahr999x";
+const urlAhr999 = "https://btctom.com/analysis/ahr999";
+const urlAhr999x = "https://btctom.com/analysis/ahr999x";
 
 
 function getAhr999() {
@@ -18,7 +18,8 @@ function getAhr999() {
 
                 // console.log(res.text);
                 let $ = cheerio.load(res.text);
-                ahr999 = $("#ahr999").text();
+                // id="content" class="mb-0 text-theme"
+		ahr999 = $('#content .text-theme').text()
                 // console.log(ahr999);
                 promiesBingo(ahr999);
             })
@@ -39,7 +40,8 @@ function getAhr999x() {
 
                 // console.log(res.text);
                 let $ = cheerio.load(res.text);
-                ahr999x = $("#ahr999x").text();
+                // id="content" class="mb-0 text-theme"
+		ahr999x = $('#content .text-theme').text()
                 // console.log(ahr999x);
                 promiesBingo(ahr999x);
             })

@@ -2,4 +2,4 @@ conf/config.json.clear
 db/hawkassist.db
 node_modules/
 *.log
-yarn.lock
+*lock*

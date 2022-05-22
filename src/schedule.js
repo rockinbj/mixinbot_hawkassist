@@ -62,7 +62,7 @@ async function main() {
     let userInvests = await db.getAllInvests();
     for (const invest of userInvests) {
         let {cost, interval}  = await getCurrentCost(invest.amounts);
-        interval = 3;  //for test
+        interval = 10;  //for test
         const cmd = buildBuySchedule(invest.userId, invest.tokenSymbol, {cost, interval});
         schedules.push(cmd);
     }
